@@ -302,7 +302,6 @@ func (a *WsClient) work() {
 				log.Printf("发送请求失败: %s\n", err)
 				return
 			}
-			log.Printf("[发送请求] %v\n", req)
 		}
 	}
 
@@ -342,8 +341,6 @@ func (a *WsClient) receive() {
 				continue
 			}
 		}
-
-		log.Println("[收到消息]", string(txtMsg))
 
 		//发送结果到默认消息处理通道
 
