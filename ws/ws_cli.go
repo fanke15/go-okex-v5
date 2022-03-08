@@ -8,7 +8,6 @@ import (
 	. "github.com/fanke15/go-okex-v5/config"
 	. "github.com/fanke15/go-okex-v5/utils"
 	. "github.com/fanke15/go-okex-v5/ws/wImpl"
-	"log"
 	"regexp"
 	"runtime/debug"
 	"sync"
@@ -231,7 +230,7 @@ func (a *WsClient) Start() error {
 		go a.receive()
 		go a.work()
 		a.isStarted = true
-		log.Println("客户端已启动!", a.WsEndPoint)
+		//log.Println("客户端已启动!", a.WsEndPoint)
 		return nil
 	}
 }
@@ -246,7 +245,7 @@ func (a *WsClient) work() {
 		a.Stop()
 		err := recover()
 		if err != nil {
-			log.Printf("work End. Recover msg: %+v", a)
+			//log.Printf("work End. Recover msg: %+v", a)
 			debug.PrintStack()
 		}
 
@@ -279,7 +278,7 @@ func (a *WsClient) work() {
 			if a.onMessageHook != nil {
 				err := a.onMessageHook(data)
 				if err != nil {
-					log.Println("执行onMessageHook函数错误！", err)
+					//log.Println("执行onMessageHook函数错误！", err)
 				}
 			}
 		case errMsg, ok := <-a.errCh: //错误处理
@@ -289,7 +288,7 @@ func (a *WsClient) work() {
 			if a.OnErrorHook != nil {
 				err := a.OnErrorHook(errMsg)
 				if err != nil {
-					log.Println("执行OnErrorHook函数错误！", err)
+					//log.Println("执行OnErrorHook函数错误！", err)
 				}
 			}
 		case req, ok := <-a.sendCh: //从发送队列中取出数据发送到服务端
@@ -299,7 +298,7 @@ func (a *WsClient) work() {
 			//log.Println("接收到来自req的消息:", req)
 			err := a.conn.WriteMessage(websocket.TextMessage, []byte(req))
 			if err != nil {
-				log.Printf("发送请求失败: %s\n", err)
+				//log.Printf("发送请求失败: %s\n", err)
 				return
 			}
 		}
@@ -315,7 +314,7 @@ func (a *WsClient) receive() {
 		a.Stop()
 		err := recover()
 		if err != nil {
-			log.Printf("Receive End. Recover msg: %+v", a)
+			//log.Printf("Receive End. Recover msg: %+v", a)
 			debug.PrintStack()
 		}
 
@@ -325,7 +324,7 @@ func (a *WsClient) receive() {
 		messageType, message, err := a.conn.ReadMessage()
 		if err != nil {
 			if a.isStarted {
-				log.Println("receive message error!" + err.Error())
+				//log.Println("receive message error!" + err.Error())
 			}
 
 			break
@@ -337,7 +336,7 @@ func (a *WsClient) receive() {
 		case websocket.BinaryMessage:
 			txtMsg, err = GzipDecode(message)
 			if err != nil {
-				log.Println("解压失败！")
+				//log.Println("解压失败！")
 				continue
 			}
 		}
@@ -351,7 +350,7 @@ func (a *WsClient) receive() {
 
 		evt, data, err := a.parseMessage(txtMsg)
 		if err != nil {
-			log.Println("解析消息失败！", err)
+			//log.Println("解析消息失败！", err)
 			continue
 		}
 
@@ -386,7 +385,7 @@ func (a *WsClient) receive() {
 							if fn != nil {
 								err = fn(msg.Timestamp, msg.Info.(MsgData))
 								if err != nil {
-									log.Println("订阅数据回调函数执行失败！", err)
+									//log.Println("订阅数据回调函数执行失败！", err)
 								}
 								//log.Println("函数执行成功！", err)
 							}
@@ -405,7 +404,7 @@ func (a *WsClient) receive() {
 							if fn != nil {
 								err = fn(msg.Timestamp, msg.Info.(DepthData))
 								if err != nil {
-									log.Println("深度回调函数执行失败！", err)
+									//log.Println("深度回调函数执行失败！", err)
 								}
 
 							}
@@ -432,7 +431,7 @@ func (a *WsClient) receive() {
 			丢弃消息容易引发数据处理处理错误
 		*/
 		// case <-ctx.Done():
-		// 	log.Println("等待超时，消息丢弃 - ", data)
+		// 	//log.Println("等待超时，消息丢弃 - ", data)
 		case ch <- &Msg{Timestamp: timestamp, Info: data}:
 		}
 		cancel()
@@ -463,7 +462,7 @@ func (a *WsClient) MergeDepth(depData DepthData) (err error) {
 
 		_, err = depData.CheckSum(nil)
 		if err != nil {
-			log.Println("校验失败", err)
+			//log.Println("校验失败", err)
 			return
 		}
 
@@ -475,14 +474,14 @@ func (a *WsClient) MergeDepth(depData DepthData) (err error) {
 		a.DepthDataLock.RLock()
 		oldSnapshot, ok := a.DepthDataList[string(key)]
 		if !ok {
-			log.Println("深度数据错误，全量数据未发现！")
+			//log.Println("深度数据错误，全量数据未发现！")
 			err = errors.New("数据错误")
 			return
 		}
 		a.DepthDataLock.RUnlock()
 		newSnapshot, err = depData.CheckSum(&oldSnapshot)
 		if err != nil {
-			log.Println("深度校验失败", err)
+			//log.Println("深度校验失败", err)
 			err = errors.New("校验失败")
 			return
 		}
@@ -670,7 +669,7 @@ func (a *WsClient) Stop() error {
 		close(ch)
 	}
 
-	log.Println("ws客户端退出!")
+	//log.Println("ws客户端退出!")
 	return nil
 }
 

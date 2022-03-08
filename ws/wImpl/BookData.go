@@ -52,7 +52,7 @@ func (this *DepthData) CheckSum(snap *DepthDetail) (pDepData *DepthDetail, err e
 			return
 		}
 		pDepData = &this.Data[0]
-		log.Println("snapshot校验成功", this.Data[0].Checksum)
+		//log.Println("snapshot校验成功", this.Data[0].Checksum)
 
 	}
 
@@ -66,7 +66,7 @@ func (this *DepthData) CheckSum(snap *DepthDetail) (pDepData *DepthDetail, err e
 		if err != nil {
 			return
 		}
-		log.Println("update校验成功", this.Data[0].Checksum)
+		//log.Println("update校验成功", this.Data[0].Checksum)
 	}
 
 	return
@@ -196,22 +196,22 @@ func MergDepthData(snap DepthDetail, update DepthDetail, expChecksum int32) (res
 		return
 	}
 
-	// log.Println("old Ask - ", snap.Asks)
-	// log.Println("update Ask - ", update.Asks)
-	// log.Println("new Ask - ", newAskDepths)
+	// //log.Println("old Ask - ", snap.Asks)
+	// //log.Println("update Ask - ", update.Asks)
+	// //log.Println("new Ask - ", newAskDepths)
 	newBidDepths, err2 := mergeDepth(snap.Bids, update.Bids, "bids")
 	if err2 != nil {
 		return
 	}
-	// log.Println("old Bids - ", snap.Bids)
-	// log.Println("update Bids - ", update.Bids)
-	// log.Println("new Bids - ", newBidDepths)
+	// //log.Println("old Bids - ", snap.Bids)
+	// //log.Println("update Bids - ", update.Bids)
+	// //log.Println("new Bids - ", newBidDepths)
 
 	cBuf, checksum := CalCrc32(newAskDepths, newBidDepths)
 	if checksum != expChecksum {
 		err = errors.New("校验失败！")
-		log.Println("buffer:", cBuf.String())
-		log.Fatal(checksum, expChecksum)
+		//log.Println("buffer:", cBuf.String())
+		//log.Fatal(checksum, expChecksum)
 		return
 	}
 

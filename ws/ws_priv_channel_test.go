@@ -40,12 +40,12 @@ func prework_pri(t int) *WsClient {
 
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 
 	err = r.Start()
 	if err != nil {
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 
 	var res bool
@@ -55,7 +55,7 @@ func prework_pri(t int) *WsClient {
 		//usedTime := time.Since(start)
 		//fmt.Println("登录成功！",usedTime.String())
 	} else {
-		log.Fatal("登录失败！", err)
+		//log.Fatal("登录失败！", err)
 	}
 	fmt.Println(apikey, secretKey, passphrase)
 	return r

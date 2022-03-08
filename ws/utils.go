@@ -13,7 +13,7 @@ func checkResult(wsReq WSReqData, wsRsps []*Msg) (res bool, err error) {
 	defer func() {
 		a := recover()
 		if a != nil {
-			log.Printf("Receive End. Recover msg: %+v", a)
+			//log.Printf("Receive End. Recover msg: %+v", a)
 			debug.PrintStack()
 		}
 		return
@@ -39,7 +39,7 @@ func checkResult(wsReq WSReqData, wsRsps []*Msg) (res bool, err error) {
 	if wsReq.GetType() == MSG_NORMAL {
 		req, ok := wsReq.(ReqData)
 		if !ok {
-			log.Println("类型转化失败", req)
+			//log.Println("类型转化失败", req)
 			err = errors.New("类型转化失败")
 			return
 		}

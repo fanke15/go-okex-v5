@@ -51,7 +51,7 @@ func wsPriv() {
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -59,7 +59,7 @@ func wsPriv() {
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 	defer r.Stop()
@@ -107,7 +107,7 @@ func wsPub() {
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -115,7 +115,7 @@ func wsPub() {
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 	defer r.Stop()
@@ -162,7 +162,7 @@ func wsJrpc() {
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -170,7 +170,7 @@ func wsJrpc() {
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 

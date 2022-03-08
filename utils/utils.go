@@ -66,7 +66,7 @@ func Struct2JsonString(raw interface{}) (jsonString string, err error) {
 	//fmt.Println("转化json,", raw)
 	data, err := json.Marshal(raw)
 	if err != nil {
-		log.Println("convert json failed!", err)
+		//log.Println("convert json failed!", err)
 		return "", err
 	}
 	//log.Println(string(data))

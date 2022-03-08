@@ -48,7 +48,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -56,7 +56,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 	defer r.Stop()
@@ -107,7 +107,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -116,7 +116,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -170,7 +170,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	// 创建ws客户端
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 
@@ -178,7 +178,7 @@ OKEX go版本的v5sdk，仅供学习交流使用。
 	r.SetDailTimeout(time.Second * 2)
 	err = r.Start()
 	if err != nil {
-		log.Println(err)
+		//log.Println(err)
 		return
 	}
 

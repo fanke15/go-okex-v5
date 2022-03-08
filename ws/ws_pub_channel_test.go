@@ -14,12 +14,12 @@ func prework() *WsClient {
 	ep := "wss://ws.okex.com:8443/ws/v5/public?brokerId=9999"
 	r, err := NewWsClient(ep)
 	if err != nil {
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 
 	err = r.Start()
 	if err != nil {
-		log.Fatal(err, ep)
+		//log.Fatal(err, ep)
 	}
 	return r
 }
