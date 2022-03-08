@@ -235,7 +235,7 @@ func (a *WsClient) Start() error {
 	}
 }
 
-// 客户端退出消息channel
+// 客户端退出消息chann
 func (a *WsClient) IsQuit() <-chan struct{} {
 	return a.quitCh
 }
