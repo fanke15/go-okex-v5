@@ -2,7 +2,6 @@ package ws
 
 import (
 	"fmt"
-	"log"
 	"testing"
 	"time"
 )

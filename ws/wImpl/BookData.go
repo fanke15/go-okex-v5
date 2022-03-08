@@ -9,7 +9,6 @@ import (
 	"errors"
 	"fmt"
 	"hash/crc32"
-	"log"
 	"strconv"
 	"strings"
 )
@@ -207,7 +206,7 @@ func MergDepthData(snap DepthDetail, update DepthDetail, expChecksum int32) (res
 	// //log.Println("update Bids - ", update.Bids)
 	// //log.Println("new Bids - ", newBidDepths)
 
-	cBuf, checksum := CalCrc32(newAskDepths, newBidDepths)
+	_, checksum := CalCrc32(newAskDepths, newBidDepths)
 	if checksum != expChecksum {
 		err = errors.New("校验失败！")
 		//log.Println("buffer:", cBuf.String())

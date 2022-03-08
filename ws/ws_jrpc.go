@@ -3,7 +3,6 @@ package ws
 import (
 	"context"
 	. "github.com/fanke15/go-okex-v5/ws/wImpl"
-	"log"
 	"time"
 )
 

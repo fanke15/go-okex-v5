@@ -4,7 +4,6 @@ import (
 	"errors"
 	. "github.com/fanke15/go-okex-v5/ws/wImpl"
 	. "github.com/fanke15/go-okex-v5/ws/wInterface"
-	"log"
 	"runtime/debug"
 )
 

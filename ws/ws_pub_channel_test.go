@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	. "github.com/fanke15/go-okex-v5/ws/wImpl"
-	"log"
 	"strings"
 	"testing"
 	"time"
